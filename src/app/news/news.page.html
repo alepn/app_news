@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Notícias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+  <ion-card *ngFor="let n of news">
+    <img src="{{ n.img }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ n.subtitle }}</ion-card-subtitle>
+      <ion-card-title>{{ n.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ n.description }}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
