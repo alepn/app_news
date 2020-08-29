@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-news',
@@ -8,30 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class NewsPage implements OnInit {
 
   public news = []
+  private page
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.news = [
-      {
-       'img': 'https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/segmento-carros/02-images/onix-premier.png?imwidth=960',
-       'title': 'Notícia 1',
-       'subtitle': 'Notícia 1',
-       'description': 'Veja mais detalhes...',
-      },
-      {
-        'img': 'https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/segmento-carros/02-images/cruze-premier.png?imwidth=960',
-        'title': 'Notícia 2',
-        'subtitle': 'Notícia 2',
-        'description': 'Veja mais detalhes...',
-      },
-      {
-        'img': 'https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/segmento-carros/02-images/cruze-premier.png?imwidth=960',
-        'title': 'Notícia 2',
-        'subtitle': 'Notícia 2',
-        'description': 'Veja mais detalhes...',
-      }
-    ]
+    this.page = 1
+    this.apiService.getNews().subscribe((result:any) => {  
+      this.news = result.news
+    })    
   }
 
 }
