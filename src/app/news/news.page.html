@@ -9,17 +9,12 @@
 
 <ion-content>
 
-  <ion-card *ngFor="let n of news">
-    <a href="{{ n.url }}" target="_blank">
-      <img src="https://www.vagalume.com.br/{{ n.pic_src }}" />
-      <ion-card-header>
-        <ion-card-subtitle>{{ n.featured }}</ion-card-subtitle>
-        <ion-card-title>{{ n.headline }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{ n.kicker }}
-      </ion-card-content>
-    </a>
+  <ion-card *ngFor="let n of news" (click)="presentModal(n)">
+    <img src="https://www.vagalume.com.br/{{ n.pic_src }}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ n.featured }}</ion-card-subtitle>
+      <ion-card-title>{{ n.headline }}</ion-card-title>
+    </ion-card-header>
   </ion-card>
 
 </ion-content>

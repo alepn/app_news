@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'news',
     loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
+  },
+  {
+    path: 'modal-news',
+    loadChildren: () => import('./modal-news/modal-news.module').then( m => m.ModalNewsPageModule)
   }
 ];
 
