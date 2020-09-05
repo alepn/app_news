@@ -21,7 +21,12 @@ export class AppComponent implements OnInit {
       title: 'Notícias',
       url: '/news',
       icon: 'book'
-    }
+    },
+    {
+      title: 'Exemplo Infinite Scroll',
+      url: '/folder/Inbox',
+      icon: 'help'
+    },
   ];
 
   constructor(
