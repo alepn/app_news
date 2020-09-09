@@ -9,16 +9,23 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-card *ngFor="let n of items">
-    <img src="https://www.vagalume.com.br/dynimage/news42961-medium.jpg" />
-    <ion-card-header>
-      <ion-card-subtitle>{{ n.featured }}</ion-card-subtitle>
-      <ion-card-title>{{ n.headline }}</ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <ion-refresher slot="fixed" (ionRefresh)="loadData($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
+  <ion-list>
+    <ion-item class="user" *ngFor="let user of users">
+      <ion-avatar slot="start">
+        <img src="{{ user.avatar }}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ user.first_name }}</h2>
+        <h3>{{ user.last_name }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Loading more data...">

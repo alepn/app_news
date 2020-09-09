@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-folder',
@@ -8,62 +9,40 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FolderPage implements OnInit {
   public folder: string;
-  public items = [
-    {
-      'featured': 'teste',
-      'headline': 'teste'
-    },
-    {
-      'featured': 'teste',
-      'headline': 'teste'
-    },
-    {
-      'featured': 'teste',
-      'headline': 'teste'
-    },
-    {
-      'featured': 'teste',
-      'headline': 'teste'
-    }
-  ];
+  public users = [];
+  public page = null;
+  public total_pages = null;
 
-  public items2 = [
-    {
-      'featured': 'teste2',
-      'headline': 'teste2'
-    },
-    {
-      'featured': 'teste2',
-      'headline': 'teste2'
-    },
-    {
-      'featured': 'teste2',
-      'headline': 'teste2'
-    },
-    {
-      'featured': 'teste2',
-      'headline': 'teste2'
-    }
-  ];
-
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+    this.loadData(null);
   }
 
   loadData(event) {
+    this.page = 1;    
+    this.apiService.getUsers(this.page).subscribe((result:any) => {  
+      this.users = result.data;
+      this.total_pages = result.total_pages;
+      if(event){
+        event.target.complete();
+      }      
+    })
+  }
 
-    this.items = this.items.concat(this.items2);
+  loadMoreData(event) {
 
-    setTimeout(() => {
-      console.log('Done');
+    this.page++;
+
+    this.apiService.getUsers(this.page).subscribe((result:any) => {  
+      this.users = this.users.concat(result.data);
       event.target.complete();
-
-      if (this.items.length == 8) {
+      if (this.page == this.total_pages) {
         event.target.disabled = true;
       }
-    }, 500);
+      console.log('Done');
+    })
+
   }
 
 }
