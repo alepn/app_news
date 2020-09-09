@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'modal-news',
     loadChildren: () => import('./modal-news/modal-news.module').then( m => m.ModalNewsPageModule)
+  },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
   }
 ];
 

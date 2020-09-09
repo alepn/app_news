@@ -27,6 +27,11 @@ export class AppComponent implements OnInit {
       url: '/folder/Inbox',
       icon: 'help'
     },
+    {
+      title: 'Formulário',
+      url: '/formulario',
+      icon: 'help'
+    },
   ];
 
   constructor(
