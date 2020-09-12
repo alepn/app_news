@@ -1,2 +1,2 @@
-# app_news
-Aplicativo para exibir notícias
+# App News
+Aplicativo para exibir notícias, desenvolvido em Ionic
